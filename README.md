@@ -1,54 +1,28 @@
-# Lab 09
+# Lab 10
 
-In this lab you have to allow users to create `Comment` model and associations with User and Tweet and index and show actions and views.
+In this lab, you need to enable users to create a `Comment` for a `Post` using nested resources.
 
 ## Instructions
 
-1. For model:
+### Part 1
 
-    1.1. Create the Model `Comment` with the following attributes:
-        - `body` as a string
-        - `user_id` as a reference to User
-        - `tweet_id` as a reference to Tweet
+1. When creating a new `Post`, users should be able to include a `Comment` for that `Post` in the same form.
+2. Create a form to make a `Post` with a one `Comment`.
+   1. The form should include a `title` field.
+   2. The form should include a `body` field.
+   3. The form should include a `user` field, which is optional.
+   4. The form should include a `Comment` field, which is optional.
+   5. The form should have a submit button.
+3. Implement the necessary actions in the `PostsController` to facilitate the creation of a `Post` with a `Comment`.
+4. Modify the `Post` model to enable the creation of a `Comment` when a `Post` is created.
 
-    1.2. Validations:
-        - `body` is required
-        - `user_id` is required
-        - `tweet_id` is required
+### Part 2
 
-2. For actions:
-
-        2.1. Create the `index` action in the `CommentsController` that lists all comments.
-        
-        2.2. Create the `show` action in the `CommentsController` that shows a comment.
-        
-        2.3. Create the `new` action in the `CommentsController` that creates a new comment.
-        
-        2.4. Create the `create` action in the `CommentsController` that saves a new comment.
-        
-        2.5. Create the `edit` action in the `CommentsController` that edits a comment.
-        
-        2.6. Create the `update` action in the `CommentsController` that updates a comment.
-        
-        2.7. Create the `destroy` action in the `CommentsController` that deletes a comment.
-
-        2.8 Create the `comment_params` method in the `CommentsController` that whitelists the `body` attribute.
-
-        2.8 return feedback messages to the user after each action. HINT: use flash messages.
-3. For views:
-
-        3.1. Create the `index` view in the `comments` folder that lists all comments.
-        
-        3.2. Create the `show` view in the `comments` folder that shows a comment.
-        
-        3.3. Create the `new` view in the `comments` folder that creates a new comment.
-        
-        3.4. Create the `edit` view in the `comments` folder that edits a comment.
-
-        3.5 Create the `_form` partial in the `comments` folder that contains the form for creating and editing a comment.
-
-        3.6 Add in the post show page, show all comments related to that post ordered by creation date.
-
-        3.7 Add in the index post view, for each post how many comments it has.
-
-4. Continue using bootstrap to style your views.
+1. Set up routes for the `Comment` resource nested under the `Post` resource, required for creating a comment for a post.
+2. Design a form for creating a `Comment` for a `Post`.
+   1. Place the form on the `Post` show page or a separate page with a button, but ensure that the `Post` is identified.
+   2. Include a `body` field in the form.
+   3. The form should include a `user` field, which is optional.
+   4. The form should identify the associated `Post` for the `Comment`. This field should be hidden and non-editable.
+   5. The form should have a submit button.
+3. Implement the necessary actions in the `CommentsController` or `PostsController` to create a `Comment` for a `Post`.
