@@ -1,28 +1,27 @@
 # Lab 10
 
-In this lab, you need to enable users to create a `Comment` for a `Post` using nested resources.
+In this lab, you need to enable login, logout, and user registration for the web application.
 
 ## Instructions
 
-### Part 1
+In this lab, [Devise](https://github.com/heartcombo/devise) is used to enable login, logout, and user registration for the web application. The gem is already installed in the application. You need to add all necessary configurations to enable the following requirements:
 
-1. When creating a new `Post`, users should be able to include a `Comment` for that `Post` in the same form.
-2. Create a form to make a `Post` with a one `Comment`.
-   1. The form should include a `title` field.
-   2. The form should include a `body` field.
-   3. The form should include a `user` field, which is optional.
-   4. The form should include a `Comment` field, which is optional.
-   5. The form should have a submit button.
-3. Implement the necessary actions in the `PostsController` to facilitate the creation of a `Post` with a `Comment`.
-4. Modify the `Post` model to enable the creation of a `Comment` when a `Post` is created.
+1. The login page should be accessible to users who are not logged in.
+2. The logout option should be accessible to users who are logged in.
+3. The registration page should be accessible to users who are not logged in.
+   1. The user should be able to register with the following fields:
+      1. Name
+      2. Email
+      3. Password
+      4. Password confirmation
+4. After the user is registered, they should be redirected to the home page.
+5. If the user is not logged in, they should only be able to view posts and comments, but not create, delete, or edit them.
+6. If the user is logged in, they should be able to create, delete, or edit a post or comment.
+   1. Posts or comments created by a logged-in user must be associated with that user by default and cannot be reassigned to another user.
+   2. Users can only delete or edit their own posts or comments.
+7. Create a user profile page that shows the user's name, email, and the posts and comments that the user has created.
 
-### Part 2
+## Extra Points
 
-1. Set up routes for the `Comment` resource nested under the `Post` resource, required for creating a comment for a post.
-2. Design a form for creating a `Comment` for a `Post`.
-   1. Place the form on the `Post` show page or a separate page with a button, but ensure that the `Post` is identified.
-   2. Include a `body` field in the form.
-   3. The form should include a `user` field, which is optional.
-   4. The form should identify the associated `Post` for the `Comment`. This field should be hidden and non-editable.
-   5. The form should have a submit button.
-3. Implement the necessary actions in the `CommentsController` or `PostsController` to create a `Comment` for a `Post`.
+If you implement different user roles, such as an admin role with the ability to perform all actions, you will receive an additional 0.5 points.
+
