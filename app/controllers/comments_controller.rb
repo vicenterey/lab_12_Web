@@ -13,6 +13,10 @@ class CommentsController < ApplicationController
   # GET /comments/new
   def new
     @comment = Comment.new
+    if params[:post_id]
+      post = Post.find_by(id: params[:post_id])
+      @comment.post = post
+    end
   end
 
   # GET /comments/1/edit
