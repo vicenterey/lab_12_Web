@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :authorize_user!, only: [:edit, :update, :destroy]
 	def index
 		@posts = Post.all
 	end
@@ -8,10 +9,10 @@ class PostsController < ApplicationController
 	end
 
 	def new
-		@post = Post.new
+		@post = current_user.posts.build
 	end
 
-	def create  
+	def create
 		@post = Post.new(post_params)
 		if @post.save!
 				redirect_to posts_path
@@ -38,4 +39,14 @@ class PostsController < ApplicationController
 	def post_params
 		params.require(:post).permit(:title, :content, :user_id, :answers_count)
 	end
+
+	def set_post
+    @post = Post.find(params[:id])
+  end
+
+  def authorize_user!
+    unless @post.present? && @post.user_id == current_user.id
+      redirect_to posts_path, alert: 'Not authorized'
+    end
+  end
 end

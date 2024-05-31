@@ -1,0 +1,18 @@
+<h1><%= @user.name %>'s Profile</h1>
+<p>Email: <%= @user.email %></p>
+
+<h2>Posts</h2>
+<% @posts.each do |post| %>
+  <div>
+    <h3><%= link_to post.title, post %></h3>
+    <p><%= post.content %></p>
+  </div>
+<% end %>
+
+<h2>Comments</h2>
+<% @comments.each do |comment| %>
+  <div>
+    <p><%= comment.body %></p>
+    <p>On: <%= link_to comment.post.title, comment.post %></p>
+  </div>
+<% end %>

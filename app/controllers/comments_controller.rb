@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: %i[ show edit update destroy ]
+  before_action :authorize_user!, only: [:edit, :update, :destroy]
 
   # GET /comments or /comments.json
   def index
@@ -67,6 +68,11 @@ class CommentsController < ApplicationController
       @comment = Comment.find(params[:id])
     end
 
+    def authorize_user!
+      unless @comment.present? && @comment.user_id == current_user.id
+        redirect_to comments_path, alert: 'Not authorized'
+      end
+    end
     # Only allow a list of trusted parameters through.
     def comment_params
       params.require(:comment).permit(:body, :user_id, :post_id)
